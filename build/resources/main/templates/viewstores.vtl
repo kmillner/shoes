@@ -1,0 +1,11 @@
+<h2>All The Hip Stores!</h2>
+
+<ul>
+  #foreach ($store in $stores)
+    <li>
+      <a href="stores/$store.getId()/brands">
+        $store.getName()
+      </a>
+    </li>
+  #end
+</ul>

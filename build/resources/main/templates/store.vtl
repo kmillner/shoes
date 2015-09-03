@@ -1,0 +1,11 @@
+<h2>$store.getName()</h2>
+
+<p class="text-info">Oh SNAP! $store.getName() has all the latest brands! Check it OUT!</p>
+<br>
+<br>
+<ul>
+  #foreach ($brand in $brands)
+    <li>$brand.getName()</li>
+  #end
+</ul>
+<p class="text-danger">Don't see anything you like? Keep checking back for more!</p>

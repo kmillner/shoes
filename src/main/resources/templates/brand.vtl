@@ -1,0 +1,13 @@
+<h2>$brand.getName()</h2>
+
+<p class="text-info">JACKPOT! $brand.getName() is available for purchase at these lovely stores.
+  So what are you waiting for? Go now! Get those feet in something sicccck!</p>
+<br>
+<br>
+<ul>
+  #foreach ($store in $stores)
+    <li>$store.getName()</li>
+  #end
+</ul>
+<p class="text-danger">A store close to you ain't got the brand you want?
+  Too bad, guess you better call 'em up and tell 'em what you want!</p>
