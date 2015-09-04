@@ -1,11 +1,27 @@
-<h2>$store.getName()</h2>
+<h2>$brand.getName()</h2>
 
-<p class="text-info">Oh SNAP! $store.getName() has all the latest brands! Check it OUT!</p>
+<p class="text-info">Oh SNAP! $brand.getName() can be found at all these hip places! Check it OUT!</p>
 <br>
 <br>
-<ul>
-  #foreach ($brand in $brands)
-    <li>$brand.getName()</li>
-  #end
-</ul>
-<p class="text-danger">Don't see anything you like? Keep checking back for more!</p>
+<table class="table table-striped">
+    <tr>
+      <td>Name</td>
+      <td>Price Range</td>
+      <td>Delete</td>
+      <td>Edit</td>
+    </tr>
+    #foreach ($store in $brand.getStores())
+      <td><a href="/stores/$store.getId()">$store.getName()</a></td>
+      <td><a href="/stores/$store.getId()">$$store.getPrice()</a></td>
+          <td><form action="/store/$store.getId()/delete" method="post">
+            <button type="submit" class="btn btn-primary">
+            <i class="glyphicon glyphicon-trash"></i></span>
+          </form></td>
+          <td><form action="/stores/$store.getId()/update" method="get">
+            <button type="submit" class="btn btn-primary">
+            <i class="glyphicon glyphicon-pencil"></i></span>
+          </form></td>
+    </tr>
+    #end
+  </table>
+  <p class="text-danger">Ain't got any hip stores close to you? That SUCKS, maaaan! But hey, keep checking back you never know what you'll see!</p>

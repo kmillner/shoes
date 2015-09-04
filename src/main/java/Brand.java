@@ -55,6 +55,7 @@ public class Brand {
       return course;
     }
   }
+
   public void addStore(Store store) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO students_courses (stores, brands_id) VALUES (:stores, :brands_id)";
@@ -64,15 +65,15 @@ public class Brand {
         .executeUpdate();
     }
   }
+  //this works in sql!
 
   public List<Store> getStores() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT stores.* FROM brands JOIN stores_brands ON (brands.id = stores_brands.brands_id) JOIN students ON (students_courses.stores = students.id) WHERE brands.id = :id";
+      String sql = "SELECT stores.* FROM brands JOIN stores_brands ON (brands.id = stores_brands.brands_id) JOIN stores ON (stores_brands.id = stores.id) WHERE brands.id = :id";
       List<Store> stores = con.createQuery(sql)
           .addParameter("id", id)
           .executeAndFetch(Store.class);
       return stores;
     }
   }
-
 }

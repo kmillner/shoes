@@ -1,13 +1,15 @@
-<h2>$brand.getName()</h2>
+<h2>$store.getName()</h2>
 
-<p class="text-info">JACKPOT! $brand.getName() is available for purchase at these lovely stores.
+
+<align><p class="text-info">JACKPOT! $store.getName() carries all these lovely brands! CUH-RAZZZZY, right????
   So what are you waiting for? Go now! Get those feet in something sicccck!</p>
 <br>
-<br>
 <ul>
-  #foreach ($store in $stores)
-    <li>$store.getName()</li>
+  #foreach ($brand in $store.getBrands())
+    <li>$brand.getName()</li>
   #end
 </ul>
-<p class="text-danger">A store close to you ain't got the brand you want?
-  Too bad, guess you better call 'em up and tell 'em what you want!</p>
+<p class="text-danger">This store don't got the brand you want? Dizzang, that sucks!
+  Guess you better call 'em up and tell 'em what you want!
+  <p> If you need to make any changes to the store, <a href="/stores/$store.getId()/store-form">CUH-LICK!</a></p>
+  </p></align>

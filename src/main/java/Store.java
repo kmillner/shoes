@@ -47,12 +47,14 @@ public class Store {
     }
   }
 
-  public void updateName(String name) {
+  public void updateStore(String name, int price) {
     this.name = name;
+    this.price = price;
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE stores SET name = :name WHERE id = :id";
+      String sql = "UPDATE stores SET (name, price) = (:name, :price) WHERE id = :id";
       con.createQuery(sql)
         .addParameter("name", name)
+        .addParameter("price", price)
         .addParameter("id", id)
         .executeUpdate();
     }
@@ -96,10 +98,10 @@ public class Store {
         .executeUpdate();
     }
   }
-
+//this works in sql!!!!
   public List<Brand> getBrands() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT courses.* FROM stores JOIN stores_brands ON (stores.id = stores_brands.stores_id) JOIN brands ON (stores_brands.brands_id = brands.id) WHERE stores.id = :id";
+      String sql = "SELECT brands.* FROM stores JOIN stores_brands ON (stores.id = stores_brands.stores_id) JOIN brands ON (stores_brands.brands_id = brands.id) WHERE stores.id = :id";
       List<Brand> brands = con.createQuery(sql)
           .addParameter("id", id)
           .executeAndFetch(Brand.class);

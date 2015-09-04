@@ -21,12 +21,21 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
     //
-    get("/stores", (request, response) -> {
+    get("/viewstores", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
 
       List<Store> stores = Store.all();
       model.put("stores", stores);
       model.put("template", "templates/viewstores.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/viewbrands", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+
+      List<Brand> brands = Brand.all();
+      model.put("brands", brands);
+      model.put("template", "templates/viewbrands.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -51,6 +60,19 @@ public class App {
       return null;
     });
 
+    post("/store/new", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+
+      String name = request.queryParams("name");
+      int price = Integer.parseInt(request.queryParams("price"));
+
+      Store newStore = new Store(name, price);
+      newStore.save();
+
+      response.redirect("/store");
+      return null;
+    });
+
     post("/brands", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       String name = request.queryParams("name");
@@ -65,7 +87,7 @@ public class App {
       response.redirect("/");
       return null;
     });
-    
+
     get("/stores/:id/brands", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
 
@@ -78,17 +100,51 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/stores/:id/update", (request, response) -> {
+    get("/stores/:id/store-form", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.queryParams("id"));
+      Store store = Store.find(id);
 
-      Store store = Store.find(Integer.parseInt(request.params(":id")));
-
+      String name = request.queryParams("name");
+      int price = Integer.parseInt(request.queryParams("price"));
       model.put("store", store);
-      model.put("template", "templates/update-store-form.vtl");
+      model.put("template", "templates/store-form.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/stores/:id/store-form/", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.queryParams("id"));
+      Store store = Store.find(id);
 
+      String name = request.queryParams("name");
+      int price = Integer.parseInt(request.queryParams("price"));
+      // store.update(name, price);
+
+    response.redirect("/viewstores");
+    return null;
+  });
+
+    post("/stores/:id/delete", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+
+      Store toBeDeleted = Store.find(Integer.parseInt(request.params(":id")));
+      toBeDeleted.delete();
+
+      response.redirect("/viewstores");
+      return null;
+    });
+
+    get("/brands/:id/stores", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+
+      Brand brand = Brand.find(Integer.parseInt(request.params(":id")));
+      List<Store> stores = brand.getStores();
+
+      model.put("brand", brand);
+      model.put("stores", stores);
+      model.put("template", "templates/store.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
-
 }

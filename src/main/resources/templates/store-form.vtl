@@ -1,0 +1,23 @@
+<h1>Something Ain't Right With The Store? UPDATEEEE IT! </h1>
+
+<form action="/stores/$store.getId()/update" method="post">
+  <label for="name">Store Name</label>
+  <input id="name" name="name" value="$store.getName()" type="text">
+  <label for="price">Store Price Range</label>
+    <input id="price" placeholder="$store.getPrice()" name="price" type="text">
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+<form action="/stores/$store.getId()/delete" method="post">
+  <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span>Store Closed?</button>
+</form>
+
+<h2>Or Maybe Add a New One? YASSSS!!!!</h2>
+<form action="/store/new" method="post">
+  <label for ="name"> Store Name</label>
+  <input id="name" name="name" type="text">
+  <br>
+  <label for ="price">Price Range</label>
+  <input id="price" name="price" type="text">
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>
