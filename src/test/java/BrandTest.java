@@ -35,4 +35,12 @@ public class BrandTest {
     Brand savedBrand = Brand.find(myBrand.getId());
     assertTrue(myBrand.equals(savedBrand));
   }
+
+  @Test
+    public void find_returnsObjectByID() {
+      Brand brand1 = new Brand("Bonita");
+      brand1.save();
+      Brand saved = Brand.find(brand1.getId());
+      assertTrue(brand1.equals(saved));
+    }
 }

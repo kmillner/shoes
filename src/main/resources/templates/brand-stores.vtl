@@ -1,14 +1,8 @@
-<h1>$course.getName()</h1>
-
-<p>Students Enrolled in $course.getCourseNumber():</p>
+<p>Stores that have $brand.getName()</p>
 <ul>
-  #foreach ($student in $students)
-    <li>$student.getName()</li>
+  #foreach ($store in $stores)
+    <li>$store.getName()</li>
   #end
 </ul>
 <br>
-<a href="/courses/$course.getId()/students/add">Add students to this course</a>
-<br>
-<a href="/courses/$course.getId()/update">Edit course</a>
-<br>
-<a href="/">Go Back</a>
+<a href="/stores/$store.getId()/brands/update">Add Stores to carry this brand</a>

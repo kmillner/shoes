@@ -1,0 +1,10 @@
+<h3> Add $brand.getName() to Stores</h3>
+<form action="/stores/$brand.getId()/brands/update" method="post">
+  <br>
+  #foreach ($store in $stores)
+    <input name="store$store.getId()" type="checkbox" value="$store.getId()">
+      $store.getName()
+    <br>
+  #end
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>

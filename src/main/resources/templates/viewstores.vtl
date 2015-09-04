@@ -4,8 +4,20 @@
   #foreach ($store in $stores)
     <li>
       <a href="stores/$store.getId()/brands">
-        $store.getName()
-      </a>
+        $store.getName() </a> <form action="/stores/$store.getId()/delete" method="post">
+          <button type="submit" class="btn btn-danger">
+          <i class="glyphicon glyphicon-trash">CLOSED?</i></span>
+        </form>
     </li>
   #end
 </ul>
+<br>
+<br>
+<h2>Add a New One?! YASSSS!!!!</h2>
+<form action="/store/new" method="post">
+  <label for ="name"> Store Name</label>
+  <input id="name" name="name" type="text">
+  <label for ="price">$Price Range</label>
+  <input id="price" name="price" type="text">
+  <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-star">ADD!</i></span></button>
+</form>

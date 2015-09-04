@@ -11,17 +11,20 @@
       <td>Edit</td>
     </tr>
     #foreach ($store in $brand.getStores())
-      <td><a href="/stores/$store.getId()">$store.getName()</a></td>
-      <td><a href="/stores/$store.getId()">$$store.getPrice()</a></td>
-          <td><form action="/store/$store.getId()/delete" method="post">
+
+      <td><a href="/stores/$store.getId()/brands">$store.getName()</a></td>
+      <td><a href="/stores/$store.getId()/brands">$$store.getPrice()</a></td>
+          <td><form action="/stores/$store.getId()/brands/delete" method="post">
             <button type="submit" class="btn btn-primary">
             <i class="glyphicon glyphicon-trash"></i></span>
           </form></td>
-          <td><form action="/stores/$store.getId()/update" method="get">
+          <td><form action="/stores/$store.getId()/brands/edit" method="get">
             <button type="submit" class="btn btn-primary">
             <i class="glyphicon glyphicon-pencil"></i></span>
           </form></td>
     </tr>
     #end
   </table>
-  <p class="text-danger">Ain't got any hip stores close to you? That SUCKS, maaaan! But hey, keep checking back you never know what you'll see!</p>
+  <p class="text-danger">Wait, ain't $brand.getName() also found at another store? Let's go ahead and change that!
+  <br><a href="/stores/$brand.getId()/brands/update"><i class="glyphicon glyphicon-heart-empty">Add Stores</i></span></a>
+  </p>
