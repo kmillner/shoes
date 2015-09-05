@@ -47,13 +47,22 @@ public class Store {
     }
   }
 
-  public void updateStore(String name, int price) {
+  public void updateName(String name) {
     this.name = name;
-    this.price = price;
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE stores SET (name, price) = (:name, :price) WHERE id = :id";
+      String sql = "UPDATE stores SET (name) = (:name) WHERE id = :id";
       con.createQuery(sql)
         .addParameter("name", name)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public void updatePrice(int price) {
+    this.price = price;
+    try(Connection con = DB.sql2o.open()) {
+      String updatePriceQuery = "UPDATE stores SET (price) = (:price) WHERE id = :id";
+      con.createQuery(updatePriceQuery)
         .addParameter("price", price)
         .addParameter("id", id)
         .executeUpdate();

@@ -1,25 +1,25 @@
-# Application Name
+# Shoe Store Sim
 
-##### _{Brief description of application}, {Date of current version}_
+##### _{An app to create and add shoe brands and stores}, {4 Sept 2015}_
 
 #### By **Kallen Millner**
 
 ## Description
 
-{This is a detailed description of your application. Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. Do you want other developers to use this code in their apps? Talk about things like that here in simple terms.}
+{The user can create stores and add brands of shoes to them.}
 
 ## Setup
 
 * Set up the database in PostgreSQL by running the following commands in your terminal:
 ```
   psql
-  CREATE DATABASE database_name;
-  \c database_name;
-  CREATE TABLE table_name (id serial PRIMARY KEY, attribute varchar);
+  CREATE DATABASE shoe_stores;
+  \c shoe_stores;
+  psql shoe_stores < shoe_stores.sql
 ```
 * If you wish to run tests, create a test database:
 ```
-  CREATE DATABASE database_name_test WITH TEMPLATE database_name;
+  CREATE DATABASE shoe_stores_test WITH TEMPLATE shoe_stores;
 ```
 * Clone this repository.
 * Using the command line, navigate to the top level of the cloned directory.

@@ -10,7 +10,7 @@
       <td>Delete</td>
       <td>Edit</td>
     </tr>
-    #foreach ($store in $brand.getStores())
+    #foreach ($store in $stores)
 
       <td><a href="/stores/$store.getId()/brands">$store.getName()</a></td>
       <td><a href="/stores/$store.getId()/brands">$$store.getPrice()</a></td>
@@ -26,5 +26,5 @@
     #end
   </table>
   <p class="text-danger">Wait, ain't $brand.getName() also found at another store? Let's go ahead and change that!
-  <br><a href="/stores/$brand.getId()/brands/update"><i class="glyphicon glyphicon-heart-empty">Add Stores</i></span></a>
+  <br><a href="/brands/$brand.getId()/store/add"><i class="glyphicon glyphicon-heart-empty">Add Stores</i></span></a>
   </p>

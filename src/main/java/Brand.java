@@ -56,11 +56,24 @@ public class Brand {
     }
   }
 
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String deleteQuery = "DELETE FROM brands WHERE id = :id";
+        con.createQuery(deleteQuery)
+          .addParameter("id", id)
+          .executeUpdate();
+      String joinDeleteQuery = "DELETE FROM stores_brands WHERE brands_id = :id";
+        con.createQuery(joinDeleteQuery)
+          .addParameter("id", id)
+          .executeUpdate();
+    }
+  }
+
   public void addStore(Store store) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO stores_brands (stores_id, brands_id) VALUES (:stores_id, :brands_id)";
       con.createQuery(sql)
-        .addParameter("id", store.getId())
+        .addParameter("stores_id", store.getId())
         .addParameter("brands_id", id)
         .executeUpdate();
     }
